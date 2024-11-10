@@ -2,10 +2,8 @@ import React, { useState, useEffect, useRef } from 'react'
 import styled from "styled-components"
 import Logout from './Logout'
 import ChatInput from './ChatInput'
-import Messages from './Messages'
 import axios from "axios"
 import { getAllMessageRoute, sendMessageRoute } from '../utils/APIRoutes'
-import {v4 as uuidv4} from 'uuid';
 
 export default function ChatContainer({currentChat, currentUser, socket}) {
     const [messages, setMessages] = useState([]);
@@ -21,6 +19,7 @@ export default function ChatContainer({currentChat, currentUser, socket}) {
             setMessages(response.data);
         }
         getMessage();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currentChat])
     const handleSendMsg = async(msg) => {
         await axios.post(sendMessageRoute, {
@@ -44,6 +43,7 @@ export default function ChatContainer({currentChat, currentUser, socket}) {
                 setArrivalMessage({fromSelf: false, message: msg})
             });
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     useEffect(() => {
         arrivalMessage && setMessages((prev) => [...prev, arrivalMessage]);
@@ -76,7 +76,7 @@ export default function ChatContainer({currentChat, currentUser, socket}) {
                     {
                         messages.map((message) => {
                             return (
-                                <div ref={scrollRef} key={uuidv4()}>
+                                <div ref={scrollRef} key={crypto.randomUUID()}>
                                     <div className={`message ${message.fromSelf ? "sended" : "received"}`}>
                                         <div className="content">
                                             <p>
@@ -89,7 +89,6 @@ export default function ChatContainer({currentChat, currentUser, socket}) {
                         })
                     }
                 </div>
-                {/* <Messages /> */}
                 <ChatInput handleSendMsg={handleSendMsg} />
             </Container>
         )

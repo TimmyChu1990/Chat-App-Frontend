@@ -28,6 +28,7 @@ function Chat() {
       }
     }
     checkLogin();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   useEffect(() => {
     if(currentUser) {
@@ -47,6 +48,7 @@ function Chat() {
       }
     }
     getContacts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentUser])
   return (
     <Container>

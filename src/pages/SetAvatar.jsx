@@ -57,6 +57,7 @@ export default function SetAvatar() {
             navigate('/login');
           }
         inUseEffect();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
   return (

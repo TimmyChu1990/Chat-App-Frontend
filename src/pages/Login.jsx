@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import styled from "styled-components"
 import { Link, useNavigate } from 'react-router-dom';
-import Logo from "../assets/logo.svg";
 import { ToastContainer, toast } from 'react-toastify';
 import "react-toastify/ReactToastify.css"
 import axios from 'axios';
@@ -27,6 +26,8 @@ function Login() {
     if(localStorage.getItem('chat-app-user')){
       navigate('/');
     }
+
+   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
   
   const handleSubmit = async(event) => {
@@ -75,8 +76,7 @@ function Login() {
       <FormContainer>
         <form onSubmit={(event) => handleSubmit(event)}>
           <div className='brand'>
-            <img src={Logo} alt="Logo" />
-            <h1>Snappy</h1>
+            <h1>Timmy's Chat Room</h1>
           </div>
           <input 
             type="text" 
@@ -158,7 +158,7 @@ const FormContainer = styled.div`
       }
     }
     span {color: white;
-    text-transform: uppercase;
+    // text-transform: uppercase;
     a{
       color:#4e0eff;
       text-decoration: none;
